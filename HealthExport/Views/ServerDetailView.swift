@@ -108,13 +108,27 @@ struct ServerDetailView: View {
                 Text("Push History")
             }
 
-            Section {
-                Button("Edit Server") { showingEdit = true }
-                Button("Delete Server", role: .destructive) { showingDeleteConfirm = true }
-            }
         }
         .navigationTitle(currentServer.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button {
+                        showingEdit = true
+                    } label: {
+                        Label("Edit Server", systemImage: "pencil")
+                    }
+                    Button(role: .destructive) {
+                        showingDeleteConfirm = true
+                    } label: {
+                        Label("Delete Server", systemImage: "trash")
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+            }
+        }
         .sheet(isPresented: $showingEdit) {
             NavigationStack {
                 ServerFormView(serverStore: serverStore, editingServer: currentServer)
