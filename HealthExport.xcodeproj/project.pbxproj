@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		36VGL5BZV1T7OCN4UNWV7MDV /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = TMIHXBZUC47MM7UIU8GOPQBB /* HealthKitManager.swift */; };
+		APPICON0001BUILDFILE00001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = APPICON0001FILEREF00001 /* Assets.xcassets */; };
 		J5TXBE3367ZPSMM9XM31GJK4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = GUCON8Y6UD5OE3R1TRMKWHUL /* ContentView.swift */; };
 		K1LMWNUWDV1QFDC2XT9HRNAF /* HealthExportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BZ89J5KQ75FMR24GVOW94E7Z /* HealthExportApp.swift */; };
 		MALGOCTIA1BGC1YKGVVDNYU3 /* HTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = U1PZ15W8YTBHHZSZJVCO97CA /* HTTPServer.swift */; };
@@ -39,6 +40,7 @@
 		0ZOBS1D5K6R6FYO2HYQYM1HH /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5IYF7TQI10BWZHBIKVB9RN6X /* HealthExport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HealthExport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5UB3YE09T8QK1XIJFCVPUVIL /* HealthExport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HealthExport.entitlements; sourceTree = "<group>"; };
+		APPICON0001FILEREF00001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BZ89J5KQ75FMR24GVOW94E7Z /* HealthExportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthExportApp.swift; sourceTree = "<group>"; };
 		GUCON8Y6UD5OE3R1TRMKWHUL /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		TMIHXBZUC47MM7UIU8GOPQBB /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				CODE_SIGN_ENTITLEMENTS = HealthExport/HealthExport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W8KHU24QQR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HealthExport/Info.plist;
@@ -345,7 +348,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brtkwr.HealthExport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christiantoledana.HealthExport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -517,6 +520,7 @@
 				CODE_SIGN_ENTITLEMENTS = HealthExport/HealthExport.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = W8KHU24QQR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HealthExport/Info.plist;
@@ -533,7 +537,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.brtkwr.HealthExport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christiantoledana.HealthExport;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
