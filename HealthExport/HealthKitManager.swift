@@ -5,6 +5,7 @@ import HealthKit
 @MainActor
 final class HealthKitManager: ObservableObject {
     @Published var isAuthorised = false
+    @Published var hasCheckedAuthorisation = false
     @Published var lastError: String?
 
     private let healthStore = HKHealthStore()
@@ -25,20 +26,42 @@ final class HealthKitManager: ObservableObject {
 
     // MARK: - Authorisation
 
-    func requestAuthorisation() async {
-        guard HKHealthStore.isHealthDataAvailable() else {
-            lastError = "HealthKit is not available on this device"
-            return
-        }
-
-        var typesToRead: Set<HKObjectType> = [
+    private var typesToRead: Set<HKObjectType> {
+        var types: Set<HKObjectType> = [
             HKObjectType.workoutType(),
             HKSeriesType.workoutRoute(),
         ]
         for id in Self.quantityTypes {
             if let qt = HKQuantityType.quantityType(forIdentifier: id) {
-                typesToRead.insert(qt)
+                types.insert(qt)
             }
+        }
+        return types
+    }
+
+    /// Checks prior HealthKit authorisation without prompting the user.
+    func refreshAuthorisationStatus() async {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            hasCheckedAuthorisation = true
+            return
+        }
+
+        let status = await withCheckedContinuation { continuation in
+            healthStore.getRequestStatusForAuthorization(toShare: [], read: typesToRead) {
+                requestStatus, _ in
+                continuation.resume(returning: requestStatus)
+            }
+        }
+
+        isAuthorised = status == .unnecessary
+        hasCheckedAuthorisation = true
+    }
+
+    func requestAuthorisation() async {
+        guard HKHealthStore.isHealthDataAvailable() else {
+            lastError = "HealthKit is not available on this device"
+            hasCheckedAuthorisation = true
+            return
         }
 
         do {
@@ -48,6 +71,7 @@ final class HealthKitManager: ObservableObject {
         } catch {
             lastError = error.localizedDescription
         }
+        hasCheckedAuthorisation = true
     }
 
     // MARK: - Fetch all workouts

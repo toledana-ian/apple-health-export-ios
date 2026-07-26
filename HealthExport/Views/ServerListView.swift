@@ -9,12 +9,7 @@ struct ServerListView: View {
 
     var body: some View {
         List {
-            PushLatestWorkoutSection(
-                serverStore: serverStore,
-                healthKitManager: healthKitManager
-            )
-
-            if !healthKitManager.isAuthorised {
+            if healthKitManager.hasCheckedAuthorisation && !healthKitManager.isAuthorised {
                 Section {
                     VStack(alignment: .leading, spacing: 8) {
                         Text("HealthKit access is required to export workouts.")
@@ -27,6 +22,11 @@ struct ServerListView: View {
                     .padding(.vertical, 4)
                 }
             }
+
+            PushLatestWorkoutSection(
+                serverStore: serverStore,
+                healthKitManager: healthKitManager
+            )
 
             if let error = healthKitManager.lastError {
                 Section {
@@ -74,6 +74,9 @@ struct ServerListView: View {
             }
         }
         .navigationTitle("Health Export")
+        .task {
+            await healthKitManager.refreshAuthorisationStatus()
+        }
         .navigationDestination(for: UUID.self) { serverID in
             if let server = serverStore.server(id: serverID) {
                 ServerDetailView(
