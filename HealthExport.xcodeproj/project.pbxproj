@@ -21,7 +21,18 @@
 		SFV0SERVERFORMVIEW00001 /* ServerFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SFV0SERVERFORMVIEW00002 /* ServerFormView.swift */; };
 		SDV0SERVERDETAILVIEW01 /* ServerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SDV0SERVERDETAILVIEW02 /* ServerDetailView.swift */; };
 		LSV0LOCALSERVERVIEW0001 /* LocalServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = LSV0LOCALSERVERVIEW0002 /* LocalServerView.swift */; };
+		WEP0WORKOUTEXPORTPAYLOAD1 /* WorkoutExportPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEP0WORKOUTEXPORTPAYLOAD2 /* WorkoutExportPayload.swift */; };
+		USP0URLSESSIONPROTOCOL001 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = USP0URLSESSIONPROTOCOL002 /* URLSessionProtocol.swift */; };
+		WDP0WORKOUTDATAPROVIDER1 /* WorkoutDataProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = WDP0WORKOUTDATAPROVIDER2 /* WorkoutDataProviding.swift */; };
+		WES0WORKOUTEXPORTSRV001 /* WorkoutExportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = WES0WORKOUTEXPORTSRV002 /* WorkoutExportService.swift */; };
+		PHV0PUSHHISTORYVIEW0001 /* PushHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PHV0PUSHHISTORYVIEW0002 /* PushHistoryView.swift */; };
+		PWV0PUSHWORKOUTSVIEW001 /* PushWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PWV0PUSHWORKOUTSVIEW002 /* PushWorkoutsView.swift */; };
+		PLS0PUSHLATESTSECTION01 /* PushLatestWorkoutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = PLS0PUSHLATESTSECTION02 /* PushLatestWorkoutSection.swift */; };
 		SUT0URLBUILDERTESTS001 /* ServerURLBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */; };
+		WEPT0PAYLOADTESTS00001 /* WorkoutExportPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEPT0PAYLOADTESTS00002 /* WorkoutExportPayloadTests.swift */; };
+		WEST0SERVICETESTS0001 /* WorkoutExportServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEST0SERVICETESTS0002 /* WorkoutExportServiceTests.swift */; };
+		SST0SERVERSTORETESTS0001 /* ServerStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SST0SERVERSTORETESTS0002 /* ServerStoreTests.swift */; };
+		MUP0MOCKURLPROTOCOL001 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = MUP0MOCKURLPROTOCOL002 /* MockURLProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +53,19 @@
 		SFV0SERVERFORMVIEW00002 /* ServerFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFormView.swift; sourceTree = "<group>"; };
 		SDV0SERVERDETAILVIEW02 /* ServerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailView.swift; sourceTree = "<group>"; };
 		LSV0LOCALSERVERVIEW0002 /* LocalServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalServerView.swift; sourceTree = "<group>"; };
+		WEP0WORKOUTEXPORTPAYLOAD2 /* WorkoutExportPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExportPayload.swift; sourceTree = "<group>"; };
+		USP0URLSESSIONPROTOCOL002 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		WDP0WORKOUTDATAPROVIDER2 /* WorkoutDataProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataProviding.swift; sourceTree = "<group>"; };
+		WES0WORKOUTEXPORTSRV002 /* WorkoutExportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExportService.swift; sourceTree = "<group>"; };
+		PHV0PUSHHISTORYVIEW0002 /* PushHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHistoryView.swift; sourceTree = "<group>"; };
+		PWV0PUSHWORKOUTSVIEW002 /* PushWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushWorkoutsView.swift; sourceTree = "<group>"; };
+		PLS0PUSHLATESTSECTION02 /* PushLatestWorkoutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLatestWorkoutSection.swift; sourceTree = "<group>"; };
 		HET0HEALTHEXPORTTESTS01 /* HealthExportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthExportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerURLBuilderTests.swift; sourceTree = "<group>"; };
+		WEPT0PAYLOADTESTS00002 /* WorkoutExportPayloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExportPayloadTests.swift; sourceTree = "<group>"; };
+		WEST0SERVICETESTS0002 /* WorkoutExportServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExportServiceTests.swift; sourceTree = "<group>"; };
+		SST0SERVERSTORETESTS0002 /* ServerStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStoreTests.swift; sourceTree = "<group>"; };
+		MUP0MOCKURLPROTOCOL002 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				DM0D3L5M0D3L5F1L3R3F00002 /* DestinationModels.swift */,
+				WEP0WORKOUTEXPORTPAYLOAD2 /* WorkoutExportPayload.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -98,6 +121,9 @@
 				KCS0KEYCHAINSRV000000002 /* KeychainService.swift */,
 				SST0SERVERSTORE000000002 /* ServerStore.swift */,
 				SCT0CONNECTIONTEST00002 /* ServerConnectionTester.swift */,
+				USP0URLSESSIONPROTOCOL002 /* URLSessionProtocol.swift */,
+				WDP0WORKOUTDATAPROVIDER2 /* WorkoutDataProviding.swift */,
+				WES0WORKOUTEXPORTSRV002 /* WorkoutExportService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -109,6 +135,9 @@
 				SFV0SERVERFORMVIEW00002 /* ServerFormView.swift */,
 				SDV0SERVERDETAILVIEW02 /* ServerDetailView.swift */,
 				LSV0LOCALSERVERVIEW0002 /* LocalServerView.swift */,
+				PHV0PUSHHISTORYVIEW0002 /* PushHistoryView.swift */,
+				PWV0PUSHWORKOUTSVIEW002 /* PushWorkoutsView.swift */,
+				PLS0PUSHLATESTSECTION02 /* PushLatestWorkoutSection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +146,10 @@
 			isa = PBXGroup;
 			children = (
 				SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */,
+				WEPT0PAYLOADTESTS00002 /* WorkoutExportPayloadTests.swift */,
+				WEST0SERVICETESTS0002 /* WorkoutExportServiceTests.swift */,
+				SST0SERVERSTORETESTS0002 /* ServerStoreTests.swift */,
+				MUP0MOCKURLPROTOCOL002 /* MockURLProtocol.swift */,
 			);
 			path = HealthExportTests;
 			sourceTree = "<group>";
@@ -243,6 +276,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				SUT0URLBUILDERTESTS001 /* ServerURLBuilderTests.swift in Sources */,
+				WEPT0PAYLOADTESTS00001 /* WorkoutExportPayloadTests.swift in Sources */,
+				WEST0SERVICETESTS0001 /* WorkoutExportServiceTests.swift in Sources */,
+				SST0SERVERSTORETESTS0001 /* ServerStoreTests.swift in Sources */,
+				MUP0MOCKURLPROTOCOL001 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,14 +290,21 @@
 				K1LMWNUWDV1QFDC2XT9HRNAF /* HealthExportApp.swift in Sources */,
 				J5TXBE3367ZPSMM9XM31GJK4 /* ContentView.swift in Sources */,
 				DM0D3L5M0D3L5F1L3R3F00001 /* DestinationModels.swift in Sources */,
+				WEP0WORKOUTEXPORTPAYLOAD1 /* WorkoutExportPayload.swift in Sources */,
 				SUB0URLBUILDR00000000001 /* ServerURLBuilder.swift in Sources */,
 				KCS0KEYCHAINSRV000000001 /* KeychainService.swift in Sources */,
 				SST0SERVERSTORE000000001 /* ServerStore.swift in Sources */,
 				SCT0CONNECTIONTEST00001 /* ServerConnectionTester.swift in Sources */,
+				USP0URLSESSIONPROTOCOL001 /* URLSessionProtocol.swift in Sources */,
+				WDP0WORKOUTDATAPROVIDER1 /* WorkoutDataProviding.swift in Sources */,
+				WES0WORKOUTEXPORTSRV001 /* WorkoutExportService.swift in Sources */,
 				SLV0SERVERLISTVIEW00001 /* ServerListView.swift in Sources */,
 				SFV0SERVERFORMVIEW00001 /* ServerFormView.swift in Sources */,
 				SDV0SERVERDETAILVIEW01 /* ServerDetailView.swift in Sources */,
 				LSV0LOCALSERVERVIEW0001 /* LocalServerView.swift in Sources */,
+				PHV0PUSHHISTORYVIEW0001 /* PushHistoryView.swift in Sources */,
+				PWV0PUSHWORKOUTSVIEW001 /* PushWorkoutsView.swift in Sources */,
+				PLS0PUSHLATESTSECTION01 /* PushLatestWorkoutSection.swift in Sources */,
 				36VGL5BZV1T7OCN4UNWV7MDV /* HealthKitManager.swift in Sources */,
 				MALGOCTIA1BGC1YKGVVDNYU3 /* HTTPServer.swift in Sources */,
 			);

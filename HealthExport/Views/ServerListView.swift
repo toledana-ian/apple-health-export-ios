@@ -9,6 +9,11 @@ struct ServerListView: View {
 
     var body: some View {
         List {
+            PushLatestWorkoutSection(
+                serverStore: serverStore,
+                healthKitManager: healthKitManager
+            )
+
             if !healthKitManager.isAuthorised {
                 Section {
                     VStack(alignment: .leading, spacing: 8) {
@@ -41,7 +46,10 @@ struct ServerListView: View {
                 } else {
                     ForEach(serverStore.servers) { server in
                         NavigationLink(value: server.id) {
-                            ServerRowView(server: server)
+                            ServerRowView(
+                                server: server,
+                                latestPush: serverStore.latestHistoryEntry(for: server.id)
+                            )
                         }
                     }
                     .onDelete(perform: deleteServers)
@@ -68,7 +76,11 @@ struct ServerListView: View {
         .navigationTitle("Health Export")
         .navigationDestination(for: UUID.self) { serverID in
             if let server = serverStore.server(id: serverID) {
-                ServerDetailView(server: server, serverStore: serverStore)
+                ServerDetailView(
+                    server: server,
+                    serverStore: serverStore,
+                    healthKitManager: healthKitManager
+                )
             }
         }
         .toolbar {
@@ -98,6 +110,7 @@ struct ServerListView: View {
 
 private struct ServerRowView: View {
     let server: DestinationServer
+    let latestPush: PushHistoryEntry?
 
     var body: some View {
         HStack {
@@ -108,6 +121,25 @@ private struct ServerRowView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .lineLimit(1)
+                if let latestPush {
+                    HStack(spacing: 4) {
+                        Image(
+                            systemName: latestPush.status == .success
+                                ? "checkmark.circle.fill" : "xmark.circle.fill"
+                        )
+                        .font(.caption2)
+                        .foregroundStyle(latestPush.status == .success ? .green : .red)
+                        if let workout = latestPush.workout {
+                            Text(workout.displayTitle)
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                        Text(latestPush.timestamp, format: .dateTime)
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
+                }
             }
             Spacer()
             if server.usesInsecureHTTP {

@@ -52,14 +52,14 @@ final class HealthKitManager: ObservableObject {
 
     // MARK: - Fetch all workouts
 
-    func fetchWorkouts() async throws -> [HKWorkout] {
+    func fetchWorkouts(limit: Int = HKObjectQueryNoLimit) async throws -> [HKWorkout] {
         let sortDescriptor = NSSortDescriptor(
             key: HKSampleSortIdentifierStartDate, ascending: false)
         return try await withCheckedThrowingContinuation { continuation in
             let query = HKSampleQuery(
                 sampleType: HKObjectType.workoutType(),
                 predicate: nil,
-                limit: HKObjectQueryNoLimit,
+                limit: limit,
                 sortDescriptors: [sortDescriptor]
             ) { _, samples, error in
                 if let error {
@@ -241,7 +241,7 @@ final class HealthKitManager: ObservableObject {
             "start_date": formatter.string(from: workout.startDate),
             "end_date": formatter.string(from: workout.endDate),
             "duration_seconds": workout.duration,
-            "activity_type": activityTypeName(workout.workoutActivityType),
+            "activity_type": WorkoutActivityTypeFormatter.name(for: workout.workoutActivityType),
             "activity_type_raw": workout.workoutActivityType.rawValue,
         ]
 
@@ -264,29 +264,5 @@ final class HealthKitManager: ObservableObject {
         result["source"] = workout.sourceRevision.source.name
 
         return result
-    }
-
-    private func activityTypeName(_ type: HKWorkoutActivityType) -> String {
-        switch type {
-        case .running: return "running"
-        case .cycling: return "cycling"
-        case .swimming: return "swimming"
-        case .walking: return "walking"
-        case .hiking: return "hiking"
-        case .yoga: return "yoga"
-        case .functionalStrengthTraining: return "strength_training"
-        case .traditionalStrengthTraining: return "strength_training"
-        case .crossTraining: return "cross_training"
-        case .elliptical: return "elliptical"
-        case .rowing: return "rowing"
-        case .stairClimbing: return "stair_climbing"
-        case .highIntensityIntervalTraining: return "hiit"
-        case .jumpRope: return "jump_rope"
-        case .pilates: return "pilates"
-        case .dance: return "dance"
-        case .cooldown: return "cooldown"
-        case .coreTraining: return "core_training"
-        default: return "other_\(type.rawValue)"
-        }
     }
 }

@@ -138,6 +138,14 @@ final class ServerStore: ObservableObject {
         pushHistory.filter { $0.serverId == serverID }
     }
 
+    func latestHistoryEntry(for serverID: UUID) -> PushHistoryEntry? {
+        history(for: serverID).first
+    }
+
+    var enabledServers: [DestinationServer] {
+        servers.filter(\.isEnabled)
+    }
+
     func clearHistory() {
         pushHistory = []
         persistHistory()

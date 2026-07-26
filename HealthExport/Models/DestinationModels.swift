@@ -79,16 +79,87 @@ enum PushStatus: String, Codable, CaseIterable {
     case pending
 }
 
+struct PushHistoryWorkoutSnapshot: Codable, Equatable, Sendable {
+    var activityType: String
+    var startDate: Date
+    var durationSeconds: Double
+    var totalDistanceMetres: Double?
+    var totalEnergyKcal: Double?
+
+    init(
+        activityType: String,
+        startDate: Date,
+        durationSeconds: Double,
+        totalDistanceMetres: Double? = nil,
+        totalEnergyKcal: Double? = nil
+    ) {
+        self.activityType = activityType
+        self.startDate = startDate
+        self.durationSeconds = durationSeconds
+        self.totalDistanceMetres = totalDistanceMetres
+        self.totalEnergyKcal = totalEnergyKcal
+    }
+
+    init(summary: WorkoutSummary) {
+        self.init(
+            activityType: summary.activityType,
+            startDate: summary.startDate,
+            durationSeconds: summary.durationSeconds,
+            totalDistanceMetres: summary.totalDistanceMetres,
+            totalEnergyKcal: summary.totalEnergyKcal
+        )
+    }
+
+    var displayTitle: String {
+        activityType.replacingOccurrences(of: "_", with: " ").capitalized
+    }
+
+    var durationFormatted: String {
+        let minutes = Int(durationSeconds) / 60
+        let seconds = Int(durationSeconds) % 60
+        return String(format: "%d:%02d", minutes, seconds)
+    }
+
+    var distanceFormatted: String? {
+        guard let metres = totalDistanceMetres else { return nil }
+        if metres >= 1000 {
+            return String(format: "%.2f km", metres / 1000)
+        }
+        return String(format: "%.0f m", metres)
+    }
+
+    var energyFormatted: String? {
+        guard let kcal = totalEnergyKcal else { return nil }
+        return String(format: "%.0f kcal", kcal)
+    }
+
+    var summaryLine: String {
+        var parts = [displayTitle, durationFormatted]
+        if let distance = distanceFormatted {
+            parts.append(distance)
+        }
+        if let energy = energyFormatted {
+            parts.append(energy)
+        }
+        return parts.joined(separator: " · ")
+    }
+}
+
 struct PushHistoryEntry: Codable, Identifiable, Equatable {
     var id: UUID
     var serverId: UUID
     var serverName: String
     /// Stable HealthKit workout UUID used as export identity.
     var workoutHealthKitUUID: UUID
+    /// When the push attempt finished (legacy persisted entries use this alone).
     var timestamp: Date
     var status: PushStatus
     var statusCode: Int?
     var message: String?
+    /// Workout metadata captured at push time; absent for entries written before this field existed.
+    var workout: PushHistoryWorkoutSnapshot?
+    /// When the push attempt started; absent for legacy entries.
+    var pushStartedAt: Date?
 
     init(
         id: UUID = UUID(),
@@ -98,7 +169,9 @@ struct PushHistoryEntry: Codable, Identifiable, Equatable {
         timestamp: Date = Date(),
         status: PushStatus,
         statusCode: Int? = nil,
-        message: String? = nil
+        message: String? = nil,
+        workout: PushHistoryWorkoutSnapshot? = nil,
+        pushStartedAt: Date? = nil
     ) {
         self.id = id
         self.serverId = serverId
@@ -108,6 +181,27 @@ struct PushHistoryEntry: Codable, Identifiable, Equatable {
         self.status = status
         self.statusCode = statusCode
         self.message = message
+        self.workout = workout
+        self.pushStartedAt = pushStartedAt
+    }
+
+    var pushDurationSeconds: TimeInterval? {
+        guard let pushStartedAt else { return nil }
+        let duration = timestamp.timeIntervalSince(pushStartedAt)
+        return duration >= 0 ? duration : nil
+    }
+
+    var pushDurationFormatted: String? {
+        guard let duration = pushDurationSeconds else { return nil }
+        if duration < 1 {
+            return String(format: "%.0f ms", duration * 1000)
+        }
+        if duration < 60 {
+            return String(format: "%.1f s", duration)
+        }
+        let minutes = Int(duration) / 60
+        let seconds = Int(duration) % 60
+        return String(format: "%d:%02d", minutes, seconds)
     }
 }
 

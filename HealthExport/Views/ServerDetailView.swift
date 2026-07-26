@@ -3,6 +3,7 @@ import SwiftUI
 struct ServerDetailView: View {
     let server: DestinationServer
     @ObservedObject var serverStore: ServerStore
+    var healthKitManager: HealthKitManager
 
     @Environment(\.dismiss) private var dismiss
     @State private var showingEdit = false
@@ -74,32 +75,37 @@ struct ServerDetailView: View {
                 }
             }
 
+            Section("Export") {
+                NavigationLink {
+                    PushWorkoutsView(
+                        server: currentServer,
+                        serverStore: serverStore,
+                        healthKitManager: healthKitManager
+                    )
+                } label: {
+                    Label("Push Selected Workouts", systemImage: "arrow.up.doc")
+                }
+                .disabled(!healthKitManager.isAuthorised || !currentServer.isEnabled)
+            }
+
             let history = serverStore.history(for: currentServer.id)
-            if !history.isEmpty {
-                Section("Recent Push History") {
-                    ForEach(history.prefix(20)) { entry in
-                        VStack(alignment: .leading, spacing: 4) {
-                            HStack {
-                                Text(entry.status.rawValue.capitalized)
-                                    .font(.caption)
-                                    .foregroundStyle(entry.status == .success ? .green : .secondary)
-                                Spacer()
-                                Text(entry.timestamp, format: .dateTime)
-                                    .font(.caption2)
-                                    .foregroundStyle(.secondary)
-                            }
-                            Text(entry.workoutHealthKitUUID.uuidString)
-                                .font(.system(.caption2, design: .monospaced))
-                                .foregroundStyle(.secondary)
-                                .lineLimit(1)
-                            if let message = entry.message, !message.isEmpty {
-                                Text(message)
-                                    .font(.caption2)
-                                    .foregroundStyle(.secondary)
-                            }
-                        }
+            Section {
+                if history.isEmpty {
+                    Text("No deliveries yet.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                } else {
+                    ForEach(history.prefix(5)) { entry in
+                        PushHistoryRowView(entry: entry)
+                    }
+                    NavigationLink {
+                        PushHistoryView(server: currentServer, serverStore: serverStore)
+                    } label: {
+                        Text("View All History (\(history.count))")
                     }
                 }
+            } header: {
+                Text("Push History")
             }
 
             Section {
