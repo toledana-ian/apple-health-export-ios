@@ -11,14 +11,16 @@ struct ServerListView: View {
         List {
             if healthKitManager.hasCheckedAuthorisation && !healthKitManager.isAuthorised {
                 Section {
-                    VStack(alignment: .leading, spacing: 8) {
+                    VStack(alignment: .center, spacing: 8) {
                         Text("HealthKit access is required to export workouts.")
                             .font(.subheadline)
+                            .multilineTextAlignment(.center)
                         Button("Authorise HealthKit") {
                             Task { await healthKitManager.requestAuthorisation() }
                         }
                         .buttonStyle(.borderedProminent)
                     }
+                    .frame(maxWidth: .infinity)
                     .padding(.vertical, 4)
                 }
             }
