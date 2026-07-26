@@ -12,6 +12,16 @@
 		K1LMWNUWDV1QFDC2XT9HRNAF /* HealthExportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BZ89J5KQ75FMR24GVOW94E7Z /* HealthExportApp.swift */; };
 		MALGOCTIA1BGC1YKGVVDNYU3 /* HTTPServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = U1PZ15W8YTBHHZSZJVCO97CA /* HTTPServer.swift */; };
 		APPICON0001BUILDFILE00001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = APPICON0001FILEREF00001 /* Assets.xcassets */; };
+		DM0D3L5M0D3L5F1L3R3F00001 /* DestinationModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DM0D3L5M0D3L5F1L3R3F00002 /* DestinationModels.swift */; };
+		SUB0URLBUILDR00000000001 /* ServerURLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUB0URLBUILDR00000000002 /* ServerURLBuilder.swift */; };
+		KCS0KEYCHAINSRV000000001 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = KCS0KEYCHAINSRV000000002 /* KeychainService.swift */; };
+		SST0SERVERSTORE000000001 /* ServerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = SST0SERVERSTORE000000002 /* ServerStore.swift */; };
+		SCT0CONNECTIONTEST00001 /* ServerConnectionTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = SCT0CONNECTIONTEST00002 /* ServerConnectionTester.swift */; };
+		SLV0SERVERLISTVIEW00001 /* ServerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SLV0SERVERLISTVIEW00002 /* ServerListView.swift */; };
+		SFV0SERVERFORMVIEW00001 /* ServerFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SFV0SERVERFORMVIEW00002 /* ServerFormView.swift */; };
+		SDV0SERVERDETAILVIEW01 /* ServerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = SDV0SERVERDETAILVIEW02 /* ServerDetailView.swift */; };
+		LSV0LOCALSERVERVIEW0001 /* LocalServerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = LSV0LOCALSERVERVIEW0002 /* LocalServerView.swift */; };
+		SUT0URLBUILDERTESTS001 /* ServerURLBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +33,37 @@
 		TMIHXBZUC47MM7UIU8GOPQBB /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		U1PZ15W8YTBHHZSZJVCO97CA /* HTTPServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPServer.swift; sourceTree = "<group>"; };
 		APPICON0001FILEREF00001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DM0D3L5M0D3L5F1L3R3F00002 /* DestinationModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationModels.swift; sourceTree = "<group>"; };
+		SUB0URLBUILDR00000000002 /* ServerURLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerURLBuilder.swift; sourceTree = "<group>"; };
+		KCS0KEYCHAINSRV000000002 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		SST0SERVERSTORE000000002 /* ServerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerStore.swift; sourceTree = "<group>"; };
+		SCT0CONNECTIONTEST00002 /* ServerConnectionTester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerConnectionTester.swift; sourceTree = "<group>"; };
+		SLV0SERVERLISTVIEW00002 /* ServerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerListView.swift; sourceTree = "<group>"; };
+		SFV0SERVERFORMVIEW00002 /* ServerFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerFormView.swift; sourceTree = "<group>"; };
+		SDV0SERVERDETAILVIEW02 /* ServerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerDetailView.swift; sourceTree = "<group>"; };
+		LSV0LOCALSERVERVIEW0002 /* LocalServerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalServerView.swift; sourceTree = "<group>"; };
+		HET0HEALTHEXPORTTESTS01 /* HealthExportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthExportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerURLBuilderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXContainerItemProxy section */
+		TGT0DEPENDENCYPROXY00001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4WDTHI5DH76C2KSV2L2ZO3QG /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = MF20K0DT1Z9TWS63U3EYGKAV;
+			remoteInfo = HealthExport;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFrameworksBuildPhase section */
+		TST0FRAMEWORKSPHASE00001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		OA921V8KO2K76LLQ8MYU4HBP /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,8 +78,47 @@
 			isa = PBXGroup;
 			children = (
 				5IYF7TQI10BWZHBIKVB9RN6X /* HealthExport.app */,
+				HET0HEALTHEXPORTTESTS01 /* HealthExportTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		MDL0MODELSGROUP00000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DM0D3L5M0D3L5F1L3R3F00002 /* DestinationModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		SVC0SERVICESGROUP000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				SUB0URLBUILDR00000000002 /* ServerURLBuilder.swift */,
+				KCS0KEYCHAINSRV000000002 /* KeychainService.swift */,
+				SST0SERVERSTORE000000002 /* ServerStore.swift */,
+				SCT0CONNECTIONTEST00002 /* ServerConnectionTester.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		VWS0VIEWSGROUP00000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				SLV0SERVERLISTVIEW00002 /* ServerListView.swift */,
+				SFV0SERVERFORMVIEW00002 /* ServerFormView.swift */,
+				SDV0SERVERDETAILVIEW02 /* ServerDetailView.swift */,
+				LSV0LOCALSERVERVIEW0002 /* LocalServerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		TST0HEALTHEXPORTTESTS01 /* HealthExportTests */ = {
+			isa = PBXGroup;
+			children = (
+				SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */,
+			);
+			path = HealthExportTests;
 			sourceTree = "<group>";
 		};
 		ELB3H8NRBSGU55VUSDE2Y4AJ /* HealthExport */ = {
@@ -49,6 +126,9 @@
 			children = (
 				BZ89J5KQ75FMR24GVOW94E7Z /* HealthExportApp.swift */,
 				GUCON8Y6UD5OE3R1TRMKWHUL /* ContentView.swift */,
+				MDL0MODELSGROUP00000001 /* Models */,
+				SVC0SERVICESGROUP000001 /* Services */,
+				VWS0VIEWSGROUP00000001 /* Views */,
 				TMIHXBZUC47MM7UIU8GOPQBB /* HealthKitManager.swift */,
 				U1PZ15W8YTBHHZSZJVCO97CA /* HTTPServer.swift */,
 				0ZOBS1D5K6R6FYO2HYQYM1HH /* Info.plist */,
@@ -62,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				ELB3H8NRBSGU55VUSDE2Y4AJ /* HealthExport */,
+				TST0HEALTHEXPORTTESTS01 /* HealthExportTests */,
 				1LH8U0B8WUOWZI790QO27J4S /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +150,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		HET0HEALTHEXPORTTARGET1 /* HealthExportTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = TST0BUILDCONFIGLIST001 /* Build configuration list for PBXNativeTarget "HealthExportTests" */;
+			buildPhases = (
+				TST0SOURCESPHASE0000001 /* Sources */,
+				TST0FRAMEWORKSPHASE00001 /* Frameworks */,
+				TST0RESOURCESPHASE00001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				TGT0TARGETDEPENDENCY0001 /* PBXTargetDependency */,
+			);
+			name = HealthExportTests;
+			productName = HealthExportTests;
+			productReference = HET0HEALTHEXPORTTESTS01 /* HealthExportTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		MF20K0DT1Z9TWS63U3EYGKAV /* HealthExport */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 914JI01YCVFQD58C7B9RCOB6 /* Build configuration list for PBXNativeTarget "HealthExport" */;
@@ -115,11 +214,19 @@
 			projectRoot = "";
 			targets = (
 				MF20K0DT1Z9TWS63U3EYGKAV /* HealthExport */,
+				HET0HEALTHEXPORTTARGET1 /* HealthExportTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		TST0RESOURCESPHASE00001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ZDK3KYZ5638I9M13XPNDIR8O /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -131,18 +238,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		TST0SOURCESPHASE0000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				SUT0URLBUILDERTESTS001 /* ServerURLBuilderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		V9XCEHVQ6METAMXWGBW7ZFPZ /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				K1LMWNUWDV1QFDC2XT9HRNAF /* HealthExportApp.swift in Sources */,
 				J5TXBE3367ZPSMM9XM31GJK4 /* ContentView.swift in Sources */,
+				DM0D3L5M0D3L5F1L3R3F00001 /* DestinationModels.swift in Sources */,
+				SUB0URLBUILDR00000000001 /* ServerURLBuilder.swift in Sources */,
+				KCS0KEYCHAINSRV000000001 /* KeychainService.swift in Sources */,
+				SST0SERVERSTORE000000001 /* ServerStore.swift in Sources */,
+				SCT0CONNECTIONTEST00001 /* ServerConnectionTester.swift in Sources */,
+				SLV0SERVERLISTVIEW00001 /* ServerListView.swift in Sources */,
+				SFV0SERVERFORMVIEW00001 /* ServerFormView.swift in Sources */,
+				SDV0SERVERDETAILVIEW01 /* ServerDetailView.swift in Sources */,
+				LSV0LOCALSERVERVIEW0001 /* LocalServerView.swift in Sources */,
 				36VGL5BZV1T7OCN4UNWV7MDV /* HealthKitManager.swift in Sources */,
 				MALGOCTIA1BGC1YKGVVDNYU3 /* HTTPServer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		TGT0TARGETDEPENDENCY0001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = MF20K0DT1Z9TWS63U3EYGKAV /* HealthExport */;
+			targetProxy = TGT0DEPENDENCYPROXY00001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		36J2YI64PXIM7VTT5OIDVAA7 /* Release */ = {
@@ -297,6 +429,42 @@
 			};
 			name = Debug;
 		};
+		TST0DEBUGCONFIG00000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtkwr.HealthExportTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthExport.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HealthExport";
+			};
+			name = Debug;
+		};
+		TST0RELEASECONFIG000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brtkwr.HealthExportTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HealthExport.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HealthExport";
+			};
+			name = Release;
+		};
 		ZBVYFTIJOLAR7I3BVORQT3EP /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -346,6 +514,15 @@
 			buildConfigurations = (
 				IN58JXMBXRDBKOB6LNP81BTB /* Debug */,
 				6TUEHTKC50KPH1JQWGBP1FW1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		TST0BUILDCONFIGLIST001 /* Build configuration list for PBXNativeTarget "HealthExportTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				TST0DEBUGCONFIG00000001 /* Debug */,
+				TST0RELEASECONFIG000001 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

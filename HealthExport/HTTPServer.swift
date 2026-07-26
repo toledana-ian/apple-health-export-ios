@@ -13,6 +13,7 @@ final class HTTPServer: ObservableObject {
 
     private var listener: NWListener?
     private var cachedWorkouts: [HKWorkout]?
+    private var cachedWorkoutsByUUID: [UUID: HKWorkout] = [:]
 
     struct LogEntry: Identifiable {
         let id = UUID()
@@ -73,6 +74,7 @@ final class HTTPServer: ObservableObject {
         listener = nil
         isRunning = false
         cachedWorkouts = nil
+        cachedWorkoutsByUUID = [:]
     }
 
     // MARK: - Connection handling
@@ -128,12 +130,29 @@ final class HTTPServer: ObservableObject {
             return
         }
 
+        if let uuid = parseWorkoutUUID(path: path) {
+            await handleGetWorkout(connection: connection, uuid: uuid)
+            return
+        }
+
         if let index = parseWorkoutIndex(path: path) {
             await handleGetWorkout(connection: connection, index: index)
             return
         }
 
         sendResponse(connection: connection, status: 404, body: "{\"error\": \"Not found\"}")
+    }
+
+    private func parseWorkoutUUID(path: String) -> UUID? {
+        let pattern = "^/workouts/([0-9A-Fa-f-]{36})$"
+        guard let regex = try? NSRegularExpression(pattern: pattern),
+            let match = regex.firstMatch(
+                in: path, range: NSRange(path.startIndex..., in: path)),
+            let range = Range(match.range(at: 1), in: path)
+        else {
+            return nil
+        }
+        return UUID(uuidString: String(path[range]))
     }
 
     private func parseWorkoutIndex(path: String) -> Int? {
@@ -162,6 +181,9 @@ final class HTTPServer: ObservableObject {
         do {
             let workouts = try await manager.fetchWorkouts()
             cachedWorkouts = workouts
+            cachedWorkoutsByUUID = Dictionary(
+                uniqueKeysWithValues: workouts.map { ($0.uuid, $0) }
+            )
 
             let serialised = workouts.enumerated().map { index, workout in
                 manager.serialiseWorkout(workout, index: index)
@@ -171,6 +193,46 @@ final class HTTPServer: ObservableObject {
             sendJSONResponse(connection: connection, object: serialised)
         } catch {
             log("/workouts", status: 500, detail: error.localizedDescription)
+            sendResponse(
+                connection: connection, status: 500,
+                body: "{\"error\": \"\(error.localizedDescription)\"}")
+        }
+    }
+
+    @MainActor
+    private func handleGetWorkout(connection: NWConnection, uuid: UUID) async {
+        guard let manager = healthKitManager else {
+            sendResponse(
+                connection: connection, status: 500,
+                body: "{\"error\": \"HealthKit not available\"}")
+            return
+        }
+
+        let path = "/workouts/\(uuid.uuidString)"
+
+        do {
+            if cachedWorkouts == nil {
+                let workouts = try await manager.fetchWorkouts()
+                cachedWorkouts = workouts
+                cachedWorkoutsByUUID = Dictionary(
+                    uniqueKeysWithValues: workouts.map { ($0.uuid, $0) }
+                )
+            }
+
+            guard let workout = cachedWorkoutsByUUID[uuid] else {
+                sendResponse(
+                    connection: connection, status: 404,
+                    body: "{\"error\": \"Workout not found for UUID \(uuid.uuidString)\"}")
+                return
+            }
+
+            let data = try await manager.fetchAllMetrics(for: workout)
+            let routeCount = (data["route"] as? [[String: Any]])?.count ?? 0
+            let metricCount = data.values.compactMap { ($0 as? [[String: Any]])?.count }.reduce(0, +) - routeCount
+            log(path, status: 200, detail: "\(metricCount) metrics, \(routeCount) GPS")
+            sendJSONResponse(connection: connection, object: data)
+        } catch {
+            log(path, status: 500, detail: error.localizedDescription)
             sendResponse(
                 connection: connection, status: 500,
                 body: "{\"error\": \"\(error.localizedDescription)\"}")
@@ -188,7 +250,11 @@ final class HTTPServer: ObservableObject {
 
         do {
             if cachedWorkouts == nil {
-                cachedWorkouts = try await manager.fetchWorkouts()
+                let workouts = try await manager.fetchWorkouts()
+                cachedWorkouts = workouts
+                cachedWorkoutsByUUID = Dictionary(
+                    uniqueKeysWithValues: workouts.map { ($0.uuid, $0) }
+                )
             }
 
             guard let workouts = cachedWorkouts, index >= 0, index < workouts.count else {
@@ -198,11 +264,7 @@ final class HTTPServer: ObservableObject {
                 return
             }
 
-            let data = try await manager.fetchAllMetrics(for: workouts[index])
-            let routeCount = (data["route"] as? [[String: Any]])?.count ?? 0
-            let metricCount = data.values.compactMap { ($0 as? [[String: Any]])?.count }.reduce(0, +) - routeCount
-            log("/workouts/\(index)", status: 200, detail: "\(metricCount) metrics, \(routeCount) GPS")
-            sendJSONResponse(connection: connection, object: data)
+            await handleGetWorkout(connection: connection, uuid: workouts[index].uuid)
         } catch {
             log("/workouts/\(index)", status: 500, detail: error.localizedDescription)
             sendResponse(

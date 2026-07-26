@@ -237,6 +237,7 @@ final class HealthKitManager: ObservableObject {
 
         var result: [String: Any] = [
             "index": index,
+            "healthkit_uuid": workout.uuid.uuidString,
             "start_date": formatter.string(from: workout.startDate),
             "end_date": formatter.string(from: workout.endDate),
             "duration_seconds": workout.duration,
