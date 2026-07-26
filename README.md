@@ -39,6 +39,104 @@ cd apple-health-export
 3. Connect your iPhone via USB and hit **Run**
 4. On your iPhone: **Settings > General > VPN & Device Management** → trust the developer certificate
 
+### Multi-server workout export (iOS)
+
+The app can POST full-resolution workout JSON to one or more remote destination servers. Configure servers under **Destination Servers** in the app.
+
+#### Destination server configuration
+
+| Field | Description |
+| ----- | ----------- |
+| **Name** | Display label only |
+| **Host or URL** | Hostname (`api.example.com`) or full URL (`https://api.example.com:8443/v1`) |
+| **Port** | Optional when not already in the host/URL (1–65535) |
+| **Upload path** | POST path; defaults to `/workouts`. If the host/URL already includes a path and this field is left at the default, the embedded path is used |
+| **Use HTTP (insecure)** | Off by default (HTTPS). When enabled, the app shows a warning that traffic is unencrypted |
+| **Enabled** | Only enabled servers receive exports |
+| **Authentication** | None, Bearer token, or custom header name + secret |
+
+Auth secrets are stored in the iOS Keychain (per server). Server metadata is stored in UserDefaults; secrets are never written there or logged.
+
+**HTTPS vs HTTP:** HTTPS is the default. Plain HTTP may be blocked by iOS App Transport Security unless the host is eligible (for example, a local network address). If blocked, the app reports: `HTTP blocked by App Transport Security. Use HTTPS or a local network host.` Do not assume arbitrary HTTP endpoints will work.
+
+#### Exporting workouts
+
+- **Push Latest Workout to All Servers** — reads the most recent HealthKit workout and POSTs it concurrently to every enabled server.
+- **Push Selected Workouts** (per server) — pick from the **100 most recent** workouts (newest first) and push to that server in **Concurrent** or **Sequential** mode.
+
+Each delivery attempt is recorded in per-server **Push History** (status, HTTP code, timing, workout snapshot). History is persisted on device (up to 500 entries total).
+
+#### HealthKit access requirements
+
+Exports read HealthKit while the app is in use. Keep the phone **unlocked and the app in the foreground** — HealthKit data is not available when the screen is locked (same constraint as the Mac fetch workflow below). **Automatic background export is not implemented.**
+
+#### Outbound POST contract
+
+Each workout is sent as a single `POST` to the configured upload URL (default `https://<host>/workouts`).
+
+**Request headers**
+
+| Header | Value |
+| ------ | ----- |
+| `Content-Type` | `application/json` |
+| `Idempotency-Key` | HealthKit workout UUID (stable per workout) |
+| `X-Workout-Source` | `apple-health-export` |
+| `Authorization` | `Bearer <token>` when auth type is Bearer (only if a secret is saved) |
+| *(custom)* | Secret value in the configured header name when auth type is Custom Header |
+
+Request timeout: 60 seconds.
+
+**Success:** HTTP `2xx` is treated as delivered. Any other status or transport error is recorded as a failure (response body snippet, up to 500 characters, may be stored in history).
+
+**Idempotency-Key:** Set to the workout's HealthKit `uuid` string. Re-sending the same workout sends the same key so receivers can deduplicate. The key is per workout, not per delivery attempt or server.
+
+**Example JSON body**
+
+```json
+{
+  "exported_at": "2026-01-01T10:31:00Z",
+  "metrics": {
+    "heart_rate": [
+      {
+        "date": "2026-01-01T10:00:00Z",
+        "timestamp": 1735732800,
+        "value": 145
+      }
+    ],
+    "route": [
+      {
+        "altitude": 10,
+        "course": 90,
+        "date": "2026-01-01T10:00:00Z",
+        "horizontal_accuracy": 5,
+        "latitude": 37,
+        "longitude": -122,
+        "speed": 3.5,
+        "timestamp": 1735732800,
+        "vertical_accuracy": 3
+      }
+    ]
+  },
+  "schema_version": 1,
+  "source": "apple_health_export_ios",
+  "source_workout_id": "550e8400-e29b-41d4-a716-446655440000",
+  "workout": {
+    "activity_type": "running",
+    "activity_type_raw": 37,
+    "duration_seconds": 1800,
+    "end_date": "2026-01-01T10:30:00Z",
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Morning Run",
+    "source": "Apple Watch",
+    "start_date": "2026-01-01T10:00:00Z",
+    "total_distance_metres": 5000,
+    "total_energy_kcal": 420
+  }
+}
+```
+
+Keys are sorted in the encoded payload. Metric series (`heart_rate`, `running_power`, `running_speed`, `stride_length`, `vertical_oscillation`, `ground_contact_time`, `route`) are omitted when empty.
+
 ### 2. Fetch workouts from the phone
 
 Open the app on your iPhone, tap **Start**, then from your Mac:
@@ -104,9 +202,9 @@ Apple's "Export All Health Data" stores workout heart rate as aggregated records
 
 This is a [known limitation](https://discussions.apple.com/thread/253843222) of Apple's XML export. The full-resolution data exists on the phone via `HKQuantitySeriesSampleQuery` — this tool accesses it.
 
-## API endpoints
+## Local HTTP API (on-device export)
 
-The iOS app serves JSON on port 8080:
+The iOS app can also serve JSON on port 8080 for Mac-side fetching (see step 2 above):
 
 | Endpoint               | Description                           |
 | ---------------------- | ------------------------------------- |
