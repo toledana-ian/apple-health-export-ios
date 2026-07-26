@@ -29,6 +29,8 @@
 		PHV0PUSHHISTORYVIEW0001 /* PushHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PHV0PUSHHISTORYVIEW0002 /* PushHistoryView.swift */; };
 		PWV0PUSHWORKOUTSVIEW001 /* PushWorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = PWV0PUSHWORKOUTSVIEW002 /* PushWorkoutsView.swift */; };
 		PLS0PUSHLATESTSECTION01 /* PushLatestWorkoutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = PLS0PUSHLATESTSECTION02 /* PushLatestWorkoutSection.swift */; };
+		PLI0PUSHLATESTINTENT001 /* PushLatestWorkoutIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = PLI0PUSHLATESTINTENT002 /* PushLatestWorkoutIntent.swift */; };
+		HES0HEALTHEXPORTSHORTCT1 /* HealthExportShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = HES0HEALTHEXPORTSHORTCT2 /* HealthExportShortcuts.swift */; };
 		SUT0URLBUILDERTESTS001 /* ServerURLBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */; };
 		WEPT0PAYLOADTESTS00001 /* WorkoutExportPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEPT0PAYLOADTESTS00002 /* WorkoutExportPayloadTests.swift */; };
 		WEST0SERVICETESTS0001 /* WorkoutExportServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = WEST0SERVICETESTS0002 /* WorkoutExportServiceTests.swift */; };
@@ -62,6 +64,8 @@
 		PHV0PUSHHISTORYVIEW0002 /* PushHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushHistoryView.swift; sourceTree = "<group>"; };
 		PWV0PUSHWORKOUTSVIEW002 /* PushWorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushWorkoutsView.swift; sourceTree = "<group>"; };
 		PLS0PUSHLATESTSECTION02 /* PushLatestWorkoutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLatestWorkoutSection.swift; sourceTree = "<group>"; };
+		PLI0PUSHLATESTINTENT002 /* PushLatestWorkoutIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushLatestWorkoutIntent.swift; sourceTree = "<group>"; };
+		HES0HEALTHEXPORTSHORTCT2 /* HealthExportShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthExportShortcuts.swift; sourceTree = "<group>"; };
 		HET0HEALTHEXPORTTESTS01 /* HealthExportTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthExportTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		SUT0URLBUILDERTESTS002 /* ServerURLBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerURLBuilderTests.swift; sourceTree = "<group>"; };
 		WEPT0PAYLOADTESTS00002 /* WorkoutExportPayloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutExportPayloadTests.swift; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 				HET0HEALTHEXPORTTESTS01 /* HealthExportTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AIG0APPINTENTSGROUP0001 /* AppIntents */ = {
+			isa = PBXGroup;
+			children = (
+				PLI0PUSHLATESTINTENT002 /* PushLatestWorkoutIntent.swift */,
+				HES0HEALTHEXPORTSHORTCT2 /* HealthExportShortcuts.swift */,
+			);
+			path = AppIntents;
 			sourceTree = "<group>";
 		};
 		MDL0MODELSGROUP00000001 /* Models */ = {
@@ -161,6 +174,7 @@
 			children = (
 				BZ89J5KQ75FMR24GVOW94E7Z /* HealthExportApp.swift */,
 				GUCON8Y6UD5OE3R1TRMKWHUL /* ContentView.swift */,
+				AIG0APPINTENTSGROUP0001 /* AppIntents */,
 				MDL0MODELSGROUP00000001 /* Models */,
 				SVC0SERVICESGROUP000001 /* Services */,
 				VWS0VIEWSGROUP00000001 /* Views */,
@@ -307,6 +321,8 @@
 				PHV0PUSHHISTORYVIEW0001 /* PushHistoryView.swift in Sources */,
 				PWV0PUSHWORKOUTSVIEW001 /* PushWorkoutsView.swift in Sources */,
 				PLS0PUSHLATESTSECTION01 /* PushLatestWorkoutSection.swift in Sources */,
+				PLI0PUSHLATESTINTENT001 /* PushLatestWorkoutIntent.swift in Sources */,
+				HES0HEALTHEXPORTSHORTCT1 /* HealthExportShortcuts.swift in Sources */,
 				36VGL5BZV1T7OCN4UNWV7MDV /* HealthKitManager.swift in Sources */,
 				MALGOCTIA1BGC1YKGVVDNYU3 /* HTTPServer.swift in Sources */,
 			);
