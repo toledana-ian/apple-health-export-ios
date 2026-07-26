@@ -35,8 +35,9 @@ struct PushLatestWorkoutSection: View {
                         } else {
                             Label(
                                 "Push Latest Workout to All Servers",
-                                systemImage: "arrow.up.circle.fill"
+                                systemImage: "square.and.arrow.up"
                             )
+                            .foregroundStyle(.white)
                         }
                         Spacer()
                     }
